@@ -1,4 +1,4 @@
-import os
+import subprocess
 import sys
 #import threading  #later
 
@@ -7,25 +7,31 @@ lit="clean_literature"
 res="clean_research_paper"
 
 def make_text_file(threadName,folder,file_type):
+    msg = "parsing files of "+str(file_type)+" type from folder "+str(folder)
     if file_type=="epub":
-        bash_command = "./epub_to_text.sh " + folder
-        os.system(bash_command)
+        subprocess.call(["print '%s' `tput setaf 12`",msg,"`tput sgr0`"])
+        subprocess.call(["./epub_to_text.sh " ,folder])
+        subprocess.call(["print '%s' `tput setaf 11`","Done successfully","`tput sgr0`"])
     elif file_type=="pdf":
-        bash_command = "./pdf_to_text.sh " + folder
-        os.system(bash_command)
+        subprocess.call(["print '%s' `tput setaf 12`",msg,"`tput sgr0`"])
+        subprocess.call(["./pdf_to_text.sh " ,folder])
+        subprocess.call(["print '%s' `tput setaf 11`","Done successfully","`tput sgr0`"])
     else:
-        print("Unknowntype file for "+threadName)
+        print("Unknowntype file for "+threadName+" While "+msg)
     threadName.exit()
 
 def make_text_file(folder,file_type):
+    msg = "Parsing files of "+str(file_type)+" type from folder "+str(folder)
     if file_type=="epub":
-        bash_command = "./epub_to_text.sh " + folder
-        os.system(bash_command)
+        subprocess.call(["print '%s' `tput setaf 12`",msg,"`tput sgr0`"])
+        subprocess.call(["./epub_to_text.sh " ,folder])
+        subprocess.call(["print '%s' `tput setaf 11`","Done successfully","`tput sgr0`"])
     elif file_type=="pdf":
-        bash_command = "./pdf_to_text.sh " + folder
-        os.system(bash_command)
+        subprocess.call(["print '%s' `tput setaf 12`",msg,"`tput sgr0`"])
+        subprocess.call(["./pdf_to_text.sh " ,folder])
+        subprocess.call(["print '%s' `tput setaf 11`","Done successfully","`tput sgr0`"])
     else:
-        print("Unknowntype file for "+threadName)
+        print("Unknowntype file for while "+msg)
     return
 
 '''
@@ -71,4 +77,4 @@ for i in range(len(args)):
 for thread in threadList:
     thread.start()
 '''
-os.system("printf '%s%' `tput setaf 1` \" All Files Converted to text\" `tput sgr0`")
+subprocess.call(["print '%s' `tput setaf 1`","All Files Converted to text","`tput sgr0`"])
