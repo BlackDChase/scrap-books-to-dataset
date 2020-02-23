@@ -71,4 +71,5 @@ for i in range(len(args)):
 for thread in threadList:
     thread.start()
 '''
-os.system("printf '%s%' `tput setaf 1` \" All Files Converted to text\" `tput sgr0`")
+command = '\x1b[%sm %s \x1b[0m' % ("6;31;40","All files converted to text")
+#os.system("printf '%s%' `tput setaf 1` \" All Files Converted to text\" `tput sgr0`")
